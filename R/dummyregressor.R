@@ -11,6 +11,7 @@ col_to_explain <- function(formula){
     stringr::str_trim()
 }
 
+
 #' Trains a very basic dummy regressor model.
 #'
 #' @param formula that is used during training
@@ -18,28 +19,31 @@ col_to_explain <- function(formula){
 #' @param strategy that is applied
 #' @export
 dummy_regressor <- function(formula, data, strategy){
+  obj <- list(strategy=strategy)
+  class(obj) <- 'dummy_regressor'
   choices <- c("mean", "median")
-  if(! strategy %in% choices){
+  if(!strategy %in% choices){
     stop("strategy is not correct")
   }
   if(strategy == "mean"){
-    func <- mean
+    obj$value <- data %>%
+      pull(col_to_predict(formula)) %>%
+      mean(na.rm=TRUE)
   }
   if(strategy == "median"){
-    func <- median
+    obj$value <- data %>%
+      pull(col_to_predict(formula)) %>%
+      mean(na.rm=TRUE)
   }
-  stat <- data %>%
-    dplyr::pull(col_to_predict(formula)) %>%
-    func(na.rm=TRUE)
-  obj <- list(stat = stat)
-  class(obj) <- 'dummy_regressor'
   obj
 }
 
 predict.dummy_regressor <- function(object, newdata){
-  rep(object$stat, nrow(newdata))
+  if(object$strategy %in% c('mean', 'median')){
+    return(rep(object$value, nrow(newdata)))
+  }
 }
 
 print.dummy_regressor <- function(object){
-  cat(paste0("dummy_regressor => value:", object$stat))
+  cat("dummy_regressor")
 }
