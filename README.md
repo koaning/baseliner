@@ -14,6 +14,13 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("koaning/baseliner")
 ```
+
+## Features 
+
+We missed some of the dummy [regressors](http://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyRegressor.html) 
+and [classifiers](http://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html) available in scikit learn. This repo contains these simple models 
+that are fit for benchmarking purposes and some extra ones as well. 
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:

@@ -2,16 +2,18 @@ Package: baseliner
 Version: 0.0.1
 Title: Baseliner offers baseline models, ie. models that should be easy to beat
 Description: Baseliner offers baseline models, ie. models that should be easy to beat. 
-Authors@R: person("Vincent", "Warmerdam", , "vincentwarmerdam@gmail.com", c("aut", "cre"))
+Maintainer: Vincent D. Warmerdam <vincentwarmerdam@gmail.com>
+Author: person("Vincent", "Warmerdam", "Damian", "vincentwarmerdam@gmail.com", c("aut", "cre"))
 License: MIT
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-Suggests: 
+Suggests:
     testthat
-Imports: 
-    tidyverse,
+Imports:
+    tidyr,
     stringr,
     dplyr,
-    tibble
+    tibble,
+    magrittr
 RoxygenNote: 6.1.0

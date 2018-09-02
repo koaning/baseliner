@@ -1,8 +1,8 @@
 library(testthat)
-library(tidyverse)
-library(stringr)
+library(magrittr)
 library(tibble)
-library(baseliner)
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(stringr)
 
 test_check("baseliner")
