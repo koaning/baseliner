@@ -15,9 +15,3 @@ test_that("another mean example", {
   pred <- predict(mod, test_data)
   expect_equal(pred, rep(25.5, 10))
 })
-
-# test_that("error if column to predict doesn't exist", {
-#   expect_error(mean_model(val ~ x, data = data_frame(x = 1:50)))
-# })
-#
-#   expect_error(mean_model(val ~ x, data = data_frame(x = 1:50)) %>% predict(1:10))
