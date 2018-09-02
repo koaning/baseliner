@@ -31,9 +31,8 @@ library(baseliner)
 dataf <- data.frame(y = 1:10, x = 1:10)
 # make a dummy model for benchmarking
 mod <- dummy_regressor(y ~ ., data=dataf, strategy="mean")
-# get 'yer test data 
+# get 'yer test data and predict 
 test_data <- data.frame(x = 1:5)
-# and predict 
 pred <- predict(mod, test_data) 
 # well done! you now have an easy benchmark to beat
 ```
