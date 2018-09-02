@@ -1,6 +1,8 @@
 # baseliner
 
-The goal of baseliner is to ...
+The goal of baseliner is to have very basic models that can serve
+as a nice baseline for all your ML endeavours. It is nice to be able
+to have a baseline that you can beat. 
 
 [![Travis build status](https://travis-ci.org/koaning/baseliner.svg?branch=master)](https://travis-ci.org/koaning/baseliner)
 
@@ -22,4 +24,3 @@ mod <- mean_model(val ~ x, data=dataf)
 test_data <- data_frame(x = rep(0, 5))
 pred <- predict(mod, test_data)
 ```
-
