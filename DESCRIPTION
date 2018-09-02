@@ -11,5 +11,7 @@ Suggests:
     testthat
 Imports: 
     tidyverse,
-    stringr
+    stringr,
+    dplyr,
+    tibble
 RoxygenNote: 6.1.0
