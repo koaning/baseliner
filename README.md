@@ -26,8 +26,14 @@ that are fit for benchmarking purposes and some extra ones as well.
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-dataf <- data_frame(val = 1:100, x = 1:100)
-mod <- mean_model(val ~ x, data=dataf)
-test_data <- data_frame(x = rep(0, 5))
-pred <- predict(mod, test_data)
+library(baseliner)
+# get yer dataframe ready
+dataf <- data.frame(y = 1:10, x = 1:10)
+# make a dummy model for benchmarking
+mod <- dummy_regressor(y ~ ., data=dataf, strategy="mean")
+# get 'yer test data 
+test_data <- data.frame(x = 1:5)
+# and predict 
+pred <- predict(mod, test_data) 
+# well done! you now have an easy benchmark to beat
 ```
