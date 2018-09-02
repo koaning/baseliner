@@ -24,4 +24,3 @@ mod <- mean_model(val ~ x, data=dataf)
 test_data <- data_frame(x = rep(0, 5))
 pred <- predict(mod, test_data)
 ```
-
