@@ -24,6 +24,6 @@ predict.mean_model <- function(object, newdata){
   rep(object$mean, nrow(newdata))
 }
 
-print.mean_model <- function(obj){
+print.mean_model <- function(object){
   cat(paste0("baseliner.mean_model => value:", object$mean))
 }
