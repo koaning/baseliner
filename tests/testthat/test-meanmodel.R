@@ -7,3 +7,13 @@ test_that("basic mean example works", {
   pred <- predict(mod, test_data)
   expect_equal(pred, rep(50.5, 5))
 })
+
+test_that("data with NA works", {
+  values <- c(1,2,3,4,5)
+  values_with_NA <- c(values, NA)
+  dataf <- data_frame(val= 1:6, x= values_with_NA)
+  mod <- mean_model(val ~ x, data=dataf)
+  test_data <- data_frame(x = values_with_NA)
+  pred <- predict(mod, test_data)
+  expect_equal(pred, rep(3.5, 6))
+})
