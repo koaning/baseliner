@@ -5,5 +5,4 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 
-
 test_check("baseliner")
