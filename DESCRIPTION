@@ -10,7 +10,7 @@ ByteCompile: true
 Suggests:
     testthat
 Imports:
-    tidyverse,
+    tidyr,
     stringr,
     dplyr,
     tibble,
