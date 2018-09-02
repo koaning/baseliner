@@ -1,17 +1,3 @@
-col_to_predict <- function(formula){
-  as.character(formula)[2]
-}
-
-col_to_explain <- function(formula){
-  formula %>%
-    as.character() %>%
-    .[3] %>%
-    stringr::str_split("\\+") %>%
-    .[[1]] %>%
-    stringr::str_trim()
-}
-
-
 #' Trains a very basic dummy regressor model.
 #'
 #' @param formula that is used during training
@@ -27,12 +13,12 @@ dummy_regressor <- function(formula, data, strategy, constant, quantile, seed){
   }
   if(strategy == "mean"){
     obj$value <- data %>%
-      pull(col_to_predict(formula)) %>%
+      dplyr::pull(col_to_predict(formula)) %>%
       mean(na.rm=TRUE)
   }
   if(strategy == "median"){
     obj$value <- data %>%
-      pull(col_to_predict(formula)) %>%
+      dplyr::pull(col_to_predict(formula)) %>%
       mean(na.rm=TRUE)
   }
   if(strategy == "constant"){
@@ -41,7 +27,7 @@ dummy_regressor <- function(formula, data, strategy, constant, quantile, seed){
   if(strategy == "quantile"){
     obj$quantile <- quantile
     obj$value <- data %>%
-      pull(col_to_predict(formula)) %>%
+      dplyr::pull(col_to_predict(formula)) %>%
       stats::quantile(obj$quantile, na.rm=TRUE)
   }
   obj

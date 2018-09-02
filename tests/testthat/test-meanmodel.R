@@ -1,10 +1,10 @@
-context("test-meanmodel.R")
+context("dummy_regressor_mean")
 
 arr1 <- 1:10
 arr2 <- c(arr1, NA)
 arr3 <- c(-1, 1, 1, 1, 1, 1)
 datasets <- list(arr1, arr2, arr3)
-frame_types <- list(data.frame, data_frame, tibble)
+frame_types <- list(data.frame, tibble::data_frame, tibble::tibble)
 formulas <- list(y ~ x, y ~ x + z, y ~ .)
 
 test_that("basic mean examples work", {
