@@ -24,13 +24,22 @@ test_that("basic tibble mean example works", {
   expect_equal(pred, rep(50.5, 5))
 })
 
-
 test_that("another mean example", {
   dataf <- tibble::data_frame(val = 1:50, x = 1:50)
   mod <- mean_model(val ~ x, data=dataf)
   test_data <- tibble::data_frame(x = 1:10)
   pred <- predict(mod, test_data)
   expect_equal(pred, rep(25.5, 10))
+})
+
+test_that("data with NA works", {
+  values <- c(1,2,3,4,5)
+  values_with_NA <- c(values, NA)
+  dataf <- data_frame(val= 1:6, x= values_with_NA)
+  mod <- mean_model(val ~ x, data=dataf)
+  test_data <- data_frame(x = values_with_NA)
+  pred <- predict(mod, test_data)
+  expect_equal(pred, rep(3.5, 6))
 })
 
 test_that("example with doubles", {
