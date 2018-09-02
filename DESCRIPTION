@@ -10,5 +10,6 @@ ByteCompile: true
 Suggests: 
     testthat
 Imports: 
-    tidyverse
+    tidyverse,
+    stringr
 RoxygenNote: 6.1.0
