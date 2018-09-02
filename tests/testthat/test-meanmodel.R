@@ -1,5 +1,5 @@
 context("test-meanmodel.R")
-
+  
 test_that("basic data.frame mean example works", {
   dataf <- data.frame(val = 1:100, x = 1:100)
   mod <- mean_model(val ~ x, data=dataf)
@@ -24,6 +24,14 @@ test_that("basic tibble mean example works", {
   expect_equal(pred, rep(50.5, 5))
 })
 
+test_that("another mean example", {
+  dataf <- tibble::data_frame(val = 1:50, x = 1:50)
+  mod <- mean_model(val ~ x, data=dataf)
+  test_data <- tibble::data_frame(x = 1:10)
+  pred <- predict(mod, test_data)
+  expect_equal(pred, rep(25.5, 10))
+})
+
 test_that("data with NA works", {
   values <- c(1,2,3,4,5)
   values_with_NA <- c(values, NA)
@@ -33,7 +41,6 @@ test_that("data with NA works", {
   pred <- predict(mod, test_data)
   expect_equal(pred, rep(3.5, 6))
 })
-
 
 test_that("example with doubles", {
   dataf <- data_frame(val = as.double(1:100), x = 1:100)
