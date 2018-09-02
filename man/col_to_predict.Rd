@@ -16,6 +16,6 @@ a string with the column name on the lefthand side of formula
 Retreives column to predict from formula
 }
 \examples{
-cols_to_explain(y ~ x + z)
-cols_to_explain(y ~ .)
+col_to_predict(y ~ x + z)
+col_to_predict(y ~ .)
 }
