@@ -7,9 +7,9 @@
 dummy_regressor <- function(formula, data, strategy, constant, quantile, seed){
   obj <- list(strategy=strategy)
   class(obj) <- 'dummy_regressor'
-  choices <- c("mean", "median")
+  choices <- c("mean", "median", "constant")
   if(!strategy %in% choices){
-    stop("strategy is not correct")
+    stop(paste("strategy", strategy, "is not correct"))
   }
   if(strategy == "mean"){
     obj$value <- data %>%
@@ -19,7 +19,7 @@ dummy_regressor <- function(formula, data, strategy, constant, quantile, seed){
   if(strategy == "median"){
     obj$value <- data %>%
       dplyr::pull(col_to_predict(formula)) %>%
-      mean(na.rm=TRUE)
+      median(na.rm=TRUE)
   }
   if(strategy == "constant"){
     obj$value <- constant
