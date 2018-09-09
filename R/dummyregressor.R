@@ -7,9 +7,9 @@
 dummy_regressor <- function(formula, data, strategy, constant, quantile, seed){
   obj <- list(strategy=strategy)
   class(obj) <- 'dummy_regressor'
-  choices <- c("mean", "median", "constant")
+  choices <- c("mean", "median", "constant", "quantile")
   if(!strategy %in% choices){
-    stop(paste("strategy", strategy, "is not correct"))
+    stop(paste("strategy", strategy, "is not allowed as a strategy parameter"))
   }
   if(strategy == "mean"){
     obj$value <- data %>%
@@ -30,17 +30,28 @@ dummy_regressor <- function(formula, data, strategy, constant, quantile, seed){
       dplyr::pull(col_to_predict(formula)) %>%
       stats::quantile(obj$quantile, na.rm=TRUE)
   }
+  if(strategy == "normal"){
+    obj$mu <- data %>%
+      dplyr::pull(col_to_predict(formula)) %>%
+      stats::mean(obj$quantile, na.rm=TRUE)
+    obj$sigma <- data %>%
+      dplyr::pull(col_to_predict(formula)) %>%
+      stats::sd(obj$quantile, na.rm=TRUE)
+  }
   obj
 }
 
 predict.dummy_regressor <- function(object, newdata){
-  allowed <- c('mean', 'median', 'constant', 'quantile')
-  if(object$strategy %in% allowed){
-    return(rep(object$value, nrow(newdata)))
+  value_based <- c('mean', 'median', 'constant', 'quantile')
+  if(object$strategy %in% value_based){
+    return(as.numeric(rep(object$value, nrow(newdata))))
   }
-  stop(paste("the dummy regression has a strategy that is not in:", paste(allowed, collapse = ", ")))
+  if(object$strategy == 'normal'){
+    return(rnorm(n=nrow(newdata), object$mu, object$sigma))
+  }
+  stop("the dummy regression has a strategy that is not recognised")
 }
 
 print.dummy_regressor <- function(object){
-  cat("dummy_regressor")
+  cat(paste("dummy_regressor of type", object$strategy))
 }
